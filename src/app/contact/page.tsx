@@ -27,7 +27,7 @@ export default function ContactPage() {
           </a>
           <a
             className="rounded-md border px-4 py-2 hover:bg-muted transition"
-            href="https://www.linkedin.com/in/https://www.linkedin.com/in/david-silva-rodrigues-500190284//"
+            href="https://www.linkedin.com/in/david-silva-rodrigues-500190284/"
             target="_blank"
             rel="noreferrer"
           >
