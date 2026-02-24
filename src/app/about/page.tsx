@@ -269,8 +269,7 @@ export default function AboutPage() {
         </div>
 
         <p className="text-xs text-muted-foreground">
-          Dica: troque <span className="font-medium">SEU_LINKEDIN</span> e{" "}
-          <span className="font-medium">SEU_EMAIL_AQUI</span>.
+          
         </p>
       </section>
     </div>

@@ -50,9 +50,9 @@ export const projects: Project[] = [
       "10+ casos E2E (smoke/regression)",
       "Screenshots em falha + pipeline CI",
     ],
-    repoUrl: "https://github.com/Dev02553/parabank-selenium-qa",
-    status: "Em construção",
-    year: "2026",
+    repoUrl: "https://github.com/Dev02553/Testes-Automatizados_ParaBank",
+    status: "MVP",
+    year: "2025",
   },
   {
     slug: "java-api-crud",
