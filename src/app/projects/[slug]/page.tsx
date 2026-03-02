@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { projects } from "@/lib/projects";
 
-export default async function ProjectPage({
+export default function ProjectPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params;
   const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
@@ -20,34 +20,30 @@ export default async function ProjectPage({
     );
   }
 
-    return (
+  return (
     <div className="space-y-10">
-      <header className="space-y-4">
-        <Link
-          href="/projects"
-          className="text-sm text-muted-foreground hover:underline"
-        >
+      <header className="space-y-3">
+        <Link href="/projects" className="text-sm text-muted-foreground hover:underline">
           ← Voltar
         </Link>
 
-        <div className="space-y-2">
-          <h1 className="text-2xl sm:text-4xl font-bold">{project.title}</h1>
-          <p className="text-muted-foreground">{project.subtitle}</p>
+        <div className="flex flex-wrap items-center gap-3">
+          <h1 className="text-2xl sm:text-3xl font-bold">{project.title}</h1>
+          <span className="text-xs rounded-full border px-2 py-1 text-muted-foreground">
+            {project.status} • {project.year}
+          </span>
         </div>
 
-        {/* Tags */}
+        <p className="text-muted-foreground">{project.subtitle}</p>
+
         <div className="flex flex-wrap gap-2">
           {project.tags.map((t) => (
-            <span
-              key={t}
-              className="text-xs rounded-full border px-2 py-1 text-muted-foreground"
-            >
+            <span key={t} className="text-xs rounded-full border px-2 py-1 text-muted-foreground">
               {t}
             </span>
           ))}
         </div>
 
-        {/* Stack */}
         <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
           {project.stack.map((s) => (
             <span key={s} className="rounded-md bg-muted px-2 py-1">
@@ -56,7 +52,6 @@ export default async function ProjectPage({
           ))}
         </div>
 
-        {/* Botões */}
         <div className="flex flex-wrap gap-3 pt-2">
           {project.repoUrl ? (
             <a
@@ -68,16 +63,6 @@ export default async function ProjectPage({
               Repositório
             </a>
           ) : null}
-
-          {project.run ? (
-            <a
-              className="rounded-md border px-4 py-2 hover:bg-muted transition"
-              href="#como-rodar"
-            >
-              Como rodar
-            </a>
-          ) : null}
-
           {project.demoUrl ? (
             <a
               className="rounded-md border px-4 py-2 hover:bg-muted transition"
@@ -89,42 +74,33 @@ export default async function ProjectPage({
             </a>
           ) : null}
         </div>
+      </header>
 
-        {/* Métricas (se existir) */}
-        {project.metrics?.length ? (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+      {/* Métricas */}
+      {project.metrics?.length ? (
+        <section className="space-y-3">
+          <h2 className="text-lg font-semibold">Métricas</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {project.metrics.map((m) => (
-              <div
-                key={m.label}
-                className="rounded-xl border bg-muted/30 p-4"
-              >
+              <div key={m.label} className="rounded-lg border p-4">
                 <div className="text-xs text-muted-foreground">{m.label}</div>
                 <div className="text-lg font-semibold">{m.value}</div>
+                {m.hint ? (
+                  <div className="text-xs text-muted-foreground mt-1">{m.hint}</div>
+                ) : null}
               </div>
             ))}
           </div>
-        ) : null}
-      </header>
+        </section>
+      ) : null}
 
-      {/* Destaques */}
-      <section className="space-y-3">
-        <h2 className="text-lg font-semibold">Destaques</h2>
-        <div className="rounded-xl border bg-muted/30 p-5">
-          <ul className="list-disc pl-5 text-muted-foreground space-y-1">
-            {project.highlights.map((h) => (
-              <li key={h}>{h}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* Como rodar */}
+      {/* Run guide */}
       {project.run ? (
-        <section id="como-rodar" className="space-y-3 scroll-mt-24">
-          <h2 className="text-lg font-semibold">Como rodar</h2>
+        <section className="space-y-3">
+          <h2 className="text-lg font-semibold">Como executar</h2>
 
-          <div className="rounded-xl border bg-muted/30 p-5 space-y-4">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+            <div className="rounded-lg border p-4">
               <div className="text-sm font-medium mb-2">Headless</div>
               <pre className="rounded-lg bg-black/40 p-4 overflow-x-auto text-sm">
                 <code>{project.run.headless}</code>
@@ -132,40 +108,81 @@ export default async function ProjectPage({
             </div>
 
             {project.run.ui ? (
-              <div>
-                <div className="text-sm font-medium mb-2">Com navegador visível</div>
+              <div className="rounded-lg border p-4">
+                <div className="text-sm font-medium mb-2">UI (visual)</div>
                 <pre className="rounded-lg bg-black/40 p-4 overflow-x-auto text-sm">
                   <code>{project.run.ui}</code>
                 </pre>
               </div>
             ) : null}
           </div>
+
+          <p className="text-sm text-muted-foreground">
+            Dica: rode dentro da pasta que contém o <code>pom.xml</code> (Java/Maven) ou o
+            <code> package.json</code> (Node).
+          </p>
         </section>
       ) : null}
 
-      {/* Case study */}
-      {project.caseStudy?.length ? (
-        <section className="space-y-3">
-          <h2 className="text-lg font-semibold">Case study</h2>
+      {/* Destaques */}
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold">Destaques</h2>
+        <ul className="list-disc pl-5 text-muted-foreground space-y-1">
+          {project.highlights.map((h) => (
+            <li key={h}>{h}</li>
+          ))}
+        </ul>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {project.caseStudy.map((c) => (
-              <div key={c.title} className="rounded-xl border bg-muted/30 p-5">
-                <h3 className="font-semibold mb-2">{c.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{c.text}</p>
+      {/* Case Study PT + EN */}
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold">Case Study</h2>
+
+        {project.caseStudy?.length ? (
+          <div className="space-y-6">
+            {project.caseStudy.map((sec) => (
+              <div key={sec.id} className="rounded-lg border p-5 space-y-3">
+                <div className="space-y-1">
+                  <div className="text-base font-semibold">{sec.title.pt}</div>
+                  <div className="text-sm text-muted-foreground">{sec.title.en}</div>
+                </div>
+
+                {sec.body ? (
+                  <div className="space-y-2">
+                    <p className="text-muted-foreground">{sec.body.pt}</p>
+                    <p className="text-muted-foreground italic opacity-90">{sec.body.en}</p>
+                  </div>
+                ) : null}
+
+                {sec.bullets ? (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div>
+                      <div className="text-sm font-medium mb-2">PT</div>
+                      <ul className="list-disc pl-5 text-muted-foreground space-y-1">
+                        {sec.bullets.pt.map((b) => (
+                          <li key={b}>{b}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium mb-2">EN</div>
+                      <ul className="list-disc pl-5 text-muted-foreground space-y-1">
+                        {sec.bullets.en.map((b) => (
+                          <li key={b}>{b}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ) : null}
               </div>
             ))}
           </div>
-        </section>
-      ) : (
-        <section className="space-y-3">
-          <h2 className="text-lg font-semibold">Case study (em breve)</h2>
+        ) : (
           <p className="text-muted-foreground">
-            Esta página vai receber: problema, solução, arquitetura, testes,
-            resultados e próximos passos.
+            Em breve: problema, solução, arquitetura, testes, resultados e próximos passos (PT + EN).
           </p>
-        </section>
-      )}
+        )}
+      </section>
     </div>
   );
 }

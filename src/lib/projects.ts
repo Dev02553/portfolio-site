@@ -8,6 +8,24 @@ export type ProjectTag =
   | "Games"
   | "Arquitetura";
 
+export type ProjectMetric = {
+  label: string;
+  value: string;
+  hint?: string;
+};
+
+export type ProjectRun = {
+  headless: string;
+  ui?: string;
+};
+
+export type CaseStudySection = {
+  id: string;
+  title: { pt: string; en: string };
+  body?: { pt: string; en: string };
+  bullets?: { pt: string[]; en: string[] };
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -15,13 +33,15 @@ export type Project = {
   tags: ProjectTag[];
   stack: string[];
   highlights: string[];
-  metrics?: { label: string; value: string }[];
-  run?: { headless: string; ui?: string };
-  caseStudy?: { title: string; text: string }[];
   repoUrl?: string;
   demoUrl?: string;
   status: "Em construção" | "MVP" | "Completo";
   year: string;
+
+  // ✅ Novos (para página detalhada)
+  metrics?: ProjectMetric[];
+  run?: ProjectRun;
+  caseStudy?: CaseStudySection[];
 };
 
 export const projects: Project[] = [
@@ -41,53 +61,127 @@ export const projects: Project[] = [
     status: "Em construção",
     year: "2026",
   },
+
   {
     slug: "parabank-selenium-qa",
     title: "QA E2E — Selenium + JUnit (ParaBank)",
     subtitle:
-      "Suíte E2E  em Selenium/JUnit com BaseTest, retry para instabilidade e evidências automáticas em falha.",
+      "Suíte E2E em Selenium/JUnit com BaseTest robusto, evidências automáticas e mitigação de instabilidade do ambiente demo.",
     tags: ["QA", "Automação"],
-    stack: ["Java", "JUnit 5", "Selenium 4", "Maven", "CI"],
-        metrics: [
-      { label: "Casos E2E", value: "10+" },
-      { label: "Execução", value: "Headless (Maven)" },
-      { label: "Evidências", value: "Screenshot em falha" },
-    ],
-    run: {
-      headless: "mvn -Dheadless=true clean test",
-      ui: "mvn clean test",
-    },
-    caseStudy: [
-      {
-        title: "Problema",
-        text: "O ParaBank é um ambiente demo com comportamento e mensagens variáveis, o que pode gerar falsos negativos em testes E2E. Além disso, URLs relativas podem causar erros no WebDriver quando chamadas diretamente.",
-      },
-      {
-        title: "Solução",
-        text: "Criei um BaseTest com helper open() para garantir URLs absolutas, login resiliente (evita relogar quando já existe sessão), waits mais estáveis e captura automática de evidências (screenshot) em falha.",
-      },
-      {
-        title: "Arquitetura",
-        text: "Estrutura baseada em BaseTest centralizando setup/teardown, helpers reutilizáveis (navegação, waits, validações) e testes separados por funcionalidade (login, contas, transferências, cadastro e perfil).",
-      },
-      {
-        title: "Resultados",
-        text: "Suíte rodando de forma consistente via Maven (headless). Cenários frágeis do ambiente demo foram tratados com validações flexíveis e, quando necessário, skip controlado para evitar quebra por instabilidade do site.",
-      },
-      {
-        title: "Próximos passos",
-        text: "Evoluir para Page Object Model completo por páginas, adicionar relatório (Allure), paralelizar testes e rodar em pipeline CI com artefatos de evidência.",
-      },
-    ],
+    stack: ["Java", "JUnit 5", "Selenium 4", "Maven"],
     highlights: [
-      "10+ casos de testes E2E ",
-      "Execução: headless (Maven)",
-      "Evidência: screenshot em falha",
+      "10 casos E2E cobrindo fluxos críticos",
+      "Execução headless via Maven",
+      "Evidência automática (screenshot) em falha",
     ],
     repoUrl: "https://github.com/Dev02553/Testes-Automatizados_ParaBank",
     status: "MVP",
     year: "2025",
+
+    metrics: [
+      { label: "Casos E2E", value: "10" },
+      { label: "Execução", value: "Headless + UI", hint: "Maven / ChromeDriver" },
+      { label: "Evidências", value: "Screenshots em falha" },
+      { label: "Padrão", value: "BaseTest + Helpers", hint: "reuso e estabilidade" },
+    ],
+
+    run: {
+      headless: "mvn -Dheadless=true clean test",
+      ui: "mvn clean test -Dheadless=false",
+    },
+
+    caseStudy: [
+      {
+        id: "context",
+        title: { pt: "Contexto", en: "Context" },
+        body: {
+          pt: "O ParaBank (Parasoft) é um sistema demo usado para praticar automação de testes E2E. Por ser um ambiente público, ele pode apresentar instabilidade e variações na UI/mensagens.",
+          en: "ParaBank (by Parasoft) is a demo banking app used to practice E2E test automation. As a public environment, it can be unstable and its UI/messages may vary.",
+        },
+      },
+      {
+        id: "goal",
+        title: { pt: "Objetivo", en: "Goal" },
+        bullets: {
+          pt: [
+            "Criar uma suíte automatizada com cobertura de fluxos críticos (login, contas, transferências, perfil).",
+            "Aplicar boas práticas (setup/teardown, waits, reuso, evidências).",
+            "Rodar em modo headless para CI e também em modo visual (UI).",
+          ],
+          en: [
+            "Build an automated suite covering critical flows (login, accounts, transfers, profile).",
+            "Apply good practices (setup/teardown, waits, reuse, evidence).",
+            "Run headless for CI and also in visual UI mode.",
+          ],
+        },
+      },
+      {
+        id: "approach",
+        title: { pt: "Abordagem", en: "Approach" },
+        bullets: {
+          pt: [
+            "Criação de um BaseTest centralizando WebDriver, WebDriverWait e helpers de navegação.",
+            "Seletores mais estáveis e waits explícitos para reduzir flakiness.",
+            "Captura de screenshot automaticamente quando um teste falha.",
+          ],
+          en: [
+            "Created a BaseTest to centralize WebDriver, WebDriverWait and navigation helpers.",
+            "Used more stable selectors and explicit waits to reduce flakiness.",
+            "Automatically captured screenshots on test failure.",
+          ],
+        },
+      },
+      {
+        id: "challenges",
+        title: { pt: "Desafios e soluções", en: "Challenges & solutions" },
+        bullets: {
+          pt: [
+            "Instabilidade do demo: uso de waits e validações alternativas (texto/elementos).",
+            "Botões duplicados em register/login: clique ancorado no FORM correto (evita clicar no login vazio).",
+            "Mensagens variáveis: asserts tolerantes aos textos reais exibidos no painel.",
+          ],
+          en: [
+            "Demo instability: added waits and alternative validations (text/elements).",
+            "Duplicate buttons in register/login: click anchored to the correct FORM (avoids empty login click).",
+            "Variable messages: assertions tolerant to real messages shown in the panel.",
+          ],
+        },
+      },
+      {
+        id: "results",
+        title: { pt: "Resultados", en: "Results" },
+        bullets: {
+          pt: [
+            "Suíte executável via Maven com log claro e evidências em falha.",
+            "Cobertura de cenários principais com melhor estabilidade no ambiente demo.",
+            "Estrutura pronta para expansão (novos testes + Page Objects no futuro).",
+          ],
+          en: [
+            "Maven-runnable suite with clear logs and failure evidence.",
+            "Coverage of main scenarios with better stability on the demo environment.",
+            "Structure ready to expand (new tests + Page Objects in the future).",
+          ],
+        },
+      },
+      {
+        id: "next",
+        title: { pt: "Próximos passos", en: "Next steps" },
+        bullets: {
+          pt: [
+            "Adicionar Page Object Model para melhorar ainda mais manutenibilidade.",
+            "Relatório HTML (Surefire) e anexar screenshots no pipeline.",
+            "Executar em CI (GitHub Actions) com artefatos.",
+          ],
+          en: [
+            "Add Page Object Model to improve maintainability further.",
+            "Generate HTML reports (Surefire) and attach screenshots in pipeline.",
+            "Run on CI (GitHub Actions) with artifacts.",
+          ],
+        },
+      },
+    ],
   },
+
   {
     slug: "java-api-crud",
     title: "API Java com DB — CRUD + Testes",
@@ -104,6 +198,7 @@ export const projects: Project[] = [
     status: "Em construção",
     year: "2026",
   },
+
   {
     slug: "react-dashboard",
     title: "Dashboard (Next/React) consumindo API",
@@ -120,6 +215,7 @@ export const projects: Project[] = [
     status: "Em construção",
     year: "2026",
   },
+
   {
     slug: "rpg-hub",
     title: "RPG HUB",
