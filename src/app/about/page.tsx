@@ -237,41 +237,68 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="rounded-xl border p-5 space-y-3">
-        <h2 className="text-lg font-semibold">Contato</h2>
-        <p className="text-sm text-muted-foreground">
-          Quer conversar sobre estágio/trainee, QA, automação ou projetos? Me chama:
-        </p>
+<section className="rounded-xl border p-5 space-y-4">
+  <div className="flex flex-wrap items-end justify-between gap-3">
+    <div>
+      <h2 className="text-lg font-semibold">Contato</h2>
+      <p className="text-sm text-muted-foreground">
+        Aberto para estágio/trainee/júnior, freela e colaborações — QA, automação, dados/ETL e dev.
+      </p>
+    </div>
 
-        <div className="flex flex-wrap gap-3">
-          <a
-            className="rounded-md border px-4 py-2 hover:bg-muted transition"
-            href="https://www.linkedin.com/in/david-silva-rodrigues-500190284/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            LinkedIn
-          </a>
-          <a
-            className="rounded-md border px-4 py-2 hover:bg-muted transition"
-            href="mailto:David_2553@hotmail.com"
-          >
-            David_2553@hotmail.com
-          </a>
-          <a
-            className="rounded-md border px-4 py-2 hover:bg-muted transition"
-            href="https://github.com/Dev02553"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
-          </a>
-        </div>
+    <Link href="/contact" className="text-sm text-muted-foreground hover:underline">
+      Ir para página de contato →
+    </Link>
+  </div>
 
-        <p className="text-xs text-muted-foreground">
-          
-        </p>
-      </section>
+  <div className="grid gap-3 sm:grid-cols-2">
+    <div className="rounded-xl border p-4">
+      <div className="text-xs text-muted-foreground">E-mail</div>
+      <div className="text-sm font-medium break-all">David_2553@hotmail.com</div>
+      <div className="mt-3 flex flex-wrap gap-2">
+        <a
+          className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
+          href="mailto:David_2553@hotmail.com?subject=Contato%20-%20Portf%C3%B3lio"
+        >
+          Enviar e-mail
+        </a>
+        <button
+          type="button"
+          onClick={() => navigator.clipboard.writeText("David_2553@hotmail.com")}
+          className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
+        >
+          Copiar e-mail
+        </button>
+      </div>
+    </div>
+
+    <div className="rounded-xl border p-4">
+      <div className="text-xs text-muted-foreground">Links</div>
+      <div className="mt-3 flex flex-wrap gap-2">
+        <a
+          className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
+          href="https://www.linkedin.com/in/david-silva-rodrigues-500190284/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          LinkedIn
+        </a>
+        <a
+          className="rounded-md border px-3 py-1.5 hover:bg-muted transition text-sm"
+          href="https://github.com/Dev02553"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub
+        </a>
+      </div>
+
+      <p className="mt-3 text-xs text-muted-foreground">
+        EN: Open to internships/junior roles, freelance and collaborations.
+      </p>
+    </div>
+  </div>
+</section>
     </div>
   );
 }
