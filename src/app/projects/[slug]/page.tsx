@@ -3,7 +3,7 @@ import { projects } from "@/lib/projects";
 
 type RouteParams = { slug: string };
 
-// Ajuda o build do Next/Vercel a conhecer os slugs (principalmente se usar export/static)
+// Ajuda o build do Next/Vercel a conhecer os slugs (bom para export/static e estabilidade)
 export function generateStaticParams(): RouteParams[] {
   return projects.map((p) => ({ slug: p.slug }));
 }
@@ -13,7 +13,7 @@ export default async function ProjectPage({
 }: {
   params: RouteParams | Promise<RouteParams>;
 }) {
-  // ✅ Compatível com Next que entrega params como Promise
+  // Compatível com Next que pode entregar params como Promise
   const { slug } = await Promise.resolve(params);
 
   const project = projects.find((p) => p.slug === slug);
@@ -136,8 +136,8 @@ export default async function ProjectPage({
           </div>
 
           <p className="text-sm text-muted-foreground">
-            Dica: rode dentro da pasta que contém o <code>pom.xml</code>{" "}
-            (Java/Maven) ou o <code>package.json</code> (Node).
+            Dica: rode dentro da pasta que contém o <code>pom.xml</code> (Java/Maven)
+            ou o <code>package.json</code> (Node).
           </p>
         </section>
       ) : null}
@@ -162,17 +162,13 @@ export default async function ProjectPage({
               <div key={sec.id} className="rounded-lg border p-5 space-y-3">
                 <div className="space-y-1">
                   <div className="text-base font-semibold">{sec.title.pt}</div>
-                  <div className="text-sm text-muted-foreground">
-                    {sec.title.en}
-                  </div>
+                  <div className="text-sm text-muted-foreground">{sec.title.en}</div>
                 </div>
 
                 {sec.body ? (
                   <div className="space-y-2">
                     <p className="text-muted-foreground">{sec.body.pt}</p>
-                    <p className="text-muted-foreground italic opacity-90">
-                      {sec.body.en}
-                    </p>
+                    <p className="text-muted-foreground italic opacity-90">{sec.body.en}</p>
                   </div>
                 ) : null}
 
