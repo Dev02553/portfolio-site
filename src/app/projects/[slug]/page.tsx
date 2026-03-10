@@ -5,7 +5,7 @@ import { projects } from "@/lib/projects";
 
 type RouteParams = { slug: string };
 
-// Ajuda o build do Next/Vercel a conhecer os slugs (bom para export/static e estabilidade)
+// Ajuda o build do Next/Vercel a conhecer os slugs
 export function generateStaticParams(): RouteParams[] {
   return projects.map((p) => ({ slug: p.slug }));
 }
@@ -15,9 +15,7 @@ export default async function ProjectPage({
 }: {
   params: RouteParams | Promise<RouteParams>;
 }) {
-  // Compatível com Next que pode entregar params como Promise
   const { slug } = await Promise.resolve(params);
-
   const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
@@ -98,13 +96,13 @@ export default async function ProjectPage({
       {project.metrics?.length ? (
         <section className="space-y-3">
           <h2 className="text-lg font-semibold">Métricas</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {project.metrics.map((m) => (
               <div key={m.label} className="rounded-lg border p-4">
                 <div className="text-xs text-muted-foreground">{m.label}</div>
                 <div className="text-lg font-semibold">{m.value}</div>
                 {m.hint ? (
-                  <div className="text-xs text-muted-foreground mt-1">
+                  <div className="mt-1 text-xs text-muted-foreground">
                     {m.hint}
                   </div>
                 ) : null}
@@ -114,28 +112,38 @@ export default async function ProjectPage({
         </section>
       ) : null}
 
-      {/* Run guide */}
+      {/* Como executar */}
       {project.run ? (
         <section className="space-y-3">
           <h2 className="text-lg font-semibold">Como executar</h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-            <div className="rounded-lg border p-4">
-              <div className="text-sm font-medium mb-2">Headless</div>
-              <pre className="rounded-lg bg-black/40 p-4 overflow-x-auto text-sm">
-                <code>{project.run.headless}</code>
-              </pre>
-            </div>
+          {(() => {
+            const runConfig = Array.isArray(project.run)
+              ? project.run[0]
+              : project.run;
 
-            {project.run.ui ? (
-              <div className="rounded-lg border p-4">
-                <div className="text-sm font-medium mb-2">UI (visual)</div>
-                <pre className="rounded-lg bg-black/40 p-4 overflow-x-auto text-sm">
-                  <code>{project.run.ui}</code>
-                </pre>
+            if (!runConfig) return null;
+
+            return (
+              <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+                <div className="rounded-lg border p-4">
+                  <div className="mb-2 text-sm font-medium">Headless</div>
+                  <pre className="overflow-x-auto rounded-lg bg-black/40 p-4 text-sm">
+                    <code>{runConfig.headless}</code>
+                  </pre>
+                </div>
+
+                {runConfig.ui ? (
+                  <div className="rounded-lg border p-4">
+                    <div className="mb-2 text-sm font-medium">UI (visual)</div>
+                    <pre className="overflow-x-auto rounded-lg bg-black/40 p-4 text-sm">
+                      <code>{runConfig.ui}</code>
+                    </pre>
+                  </div>
+                ) : null}
               </div>
-            ) : null}
-          </div>
+            );
+          })()}
 
           <p className="text-sm text-muted-foreground">
             Dica: rode dentro da pasta que contém o <code>pom.xml</code> (Java/Maven)
@@ -147,7 +155,7 @@ export default async function ProjectPage({
       {/* Destaques */}
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">Destaques</h2>
-        <ul className="list-disc pl-5 text-muted-foreground space-y-1">
+        <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
           {project.highlights.map((h) => (
             <li key={h}>{h}</li>
           ))}
@@ -164,21 +172,25 @@ export default async function ProjectPage({
               <div key={sec.id} className="rounded-lg border p-5 space-y-3">
                 <div className="space-y-1">
                   <div className="text-base font-semibold">{sec.title.pt}</div>
-                  <div className="text-sm text-muted-foreground">{sec.title.en}</div>
+                  <div className="text-sm text-muted-foreground">
+                    {sec.title.en}
+                  </div>
                 </div>
 
                 {sec.body ? (
                   <div className="space-y-2">
                     <p className="text-muted-foreground">{sec.body.pt}</p>
-                    <p className="text-muted-foreground italic opacity-90">{sec.body.en}</p>
+                    <p className="italic opacity-90 text-muted-foreground">
+                      {sec.body.en}
+                    </p>
                   </div>
                 ) : null}
 
                 {sec.bullets ? (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                     <div>
-                      <div className="text-sm font-medium mb-2">PT</div>
-                      <ul className="list-disc pl-5 text-muted-foreground space-y-1">
+                      <div className="mb-2 text-sm font-medium">PT</div>
+                      <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
                         {sec.bullets.pt.map((b) => (
                           <li key={b}>{b}</li>
                         ))}
@@ -186,8 +198,8 @@ export default async function ProjectPage({
                     </div>
 
                     <div>
-                      <div className="text-sm font-medium mb-2">EN</div>
-                      <ul className="list-disc pl-5 text-muted-foreground space-y-1">
+                      <div className="mb-2 text-sm font-medium">EN</div>
+                      <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
                         {sec.bullets.en.map((b) => (
                           <li key={b}>{b}</li>
                         ))}
@@ -208,4 +220,4 @@ export default async function ProjectPage({
   );
 }
 
-/* cSpell:disable */
+/* cSpell:enable */
