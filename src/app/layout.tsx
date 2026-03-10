@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "David Rodrigues · Portfólio",
     description:
-      "Projetos em QA, automação, dados e desenvolvimento (Java, Python, Next.js).",
+      "Portfólio de David Rodrigues com projetos em QA, automação, dados e desenvolvimento, incluindo case studies, instruções de execução, métricas e projetos em Java, Python, Next.js e TypeScript.",
     images: ["/og.jpg"],
   },
 };

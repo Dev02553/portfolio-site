@@ -61,8 +61,8 @@ export const projects: Project[] = [
       "Relatório final em XLSX com aba Data Quality",
     ],
     repoUrl: "https://github.com/Dev02553/python-etl-automation",
-    status: "Em construção",
-    year: "2026",
+    status: "Completo",
+    year: "2024",
 
     metrics: [
       { label: "Foco", value: "Qualidade de dados", hint: "regras + evidências" },
@@ -168,7 +168,7 @@ export const projects: Project[] = [
       "Evidência automática (screenshot) em falha",
     ],
     repoUrl: "https://github.com/Dev02553/Testes-Automatizados_ParaBank",
-    status: "MVP",
+    status: "Completo",
     year: "2025",
 
     metrics: [
@@ -275,8 +275,8 @@ export const projects: Project[] = [
       "Migrations (Flyway) + testes de integração",
     ],
     repoUrl: "https://github.com/Dev02553/java-api-crud",
-    status: "Em construção",
-    year: "2026",
+    status: "Completo",
+    year: "2025",
 
     metrics: [
       { label: "API", value: "REST", hint: "padrão de endpoints" },
@@ -366,7 +366,7 @@ export const projects: Project[] = [
       "Estrutura pronta para deploy no Vercel",
     ],
     repoUrl: "https://github.com/Dev02553/react-dashboard",
-    status: "Em construção",
+    status: "Completo",
     year: "2026",
 
     metrics: [
