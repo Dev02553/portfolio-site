@@ -354,76 +354,97 @@ export const projects: Project[] = [
   // 4) React Dashboard
   // =========================
   {
-    slug: "react-dashboard",
-    title: "Dashboard (Next/React) consumindo API",
-    subtitle:
-      "Interface de produto com tabela, filtros, formulários e integração com backend.",
-    tags: ["Frontend", "Produto"],
-    stack: ["Next.js", "React", "TypeScript", "Tailwind", "API"],
-    highlights: [
-      "DataTable + filtros e busca",
-      "Forms com validação",
-      "Estrutura pronta para deploy no Vercel",
-    ],
-    repoUrl: "https://github.com/Dev02553/react-dashboard",
-    status: "Completo",
-    year: "2026",
+  slug: "react-dashboard",
+  title: "Dashboard (Next/React) consumindo API",
+  subtitle:
+    "Interface de produto com tabela, filtros, formulários e integração com backend.",
+  tags: ["Frontend", "Produto"],
+  stack: ["Next.js", "React", "TypeScript", "Tailwind", "Zod", "API"],
+  highlights: [
+    "Schema Zod compartilhado entre cliente e API route",
+    "Tipos centralizados em lib/types.ts com PRODUCT_STATUSES as const",
+    "Skeleton de loading, empty state e labels acessíveis",
+    "Estrutura pronta para deploy no Vercel",
+  ],
+  repoUrl: "https://github.com/Dev02553/dashboard-next-react-api",
+  status: "Completo",
+  year: "2026",
 
-    metrics: [
-      { label: "UI", value: "Tabela + filtros", hint: "busca e ordenação" },
-      { label: "Forms", value: "Validação", hint: "inputs consistentes" },
-      { label: "Integração", value: "API", hint: "fetch/handlers" },
-      { label: "Deploy", value: "Vercel-ready", hint: "build estável" },
-    ],
+  metrics: [
+    { label: "UI", value: "Tabela + filtros", hint: "busca e ordenação" },
+    { label: "Forms", value: "Zod", hint: "validação cliente e servidor" },
+    { label: "Tipos", value: "Centralizados", hint: "lib/types.ts" },
+    { label: "Deploy", value: "Vercel-ready", hint: "build estável" },
+  ],
 
-    run: {
-      headless: "npm run build",
-      ui: "npm run dev",
-    },
-
-    caseStudy: [
-      {
-        id: "context",
-        title: { pt: "Contexto", en: "Context" },
-        body: {
-          pt: "Dashboards precisam ser rápidos e claros: listar dados, filtrar, editar e manter consistência visual.",
-          en: "Dashboards must be fast and clear: list data, filter, edit, and keep visual consistency.",
-        },
-      },
-      {
-        id: "goal",
-        title: { pt: "Objetivo", en: "Goal" },
-        bullets: {
-          pt: [
-            "Criar UI focada em produto: tabela + filtros + formulários.",
-            "Organizar componentes para escala/manutenção.",
-            "Preparar para deploy e iteração contínua.",
-          ],
-          en: [
-            "Create a product-focused UI: table + filters + forms.",
-            "Organize components for scale/maintenance.",
-            "Prepare for deployment and continuous iteration.",
-          ],
-        },
-      },
-      {
-        id: "next",
-        title: { pt: "Próximos passos", en: "Next steps" },
-        bullets: {
-          pt: [
-            "Adicionar paginação e estados de loading/empty/error melhores.",
-            "Testes de UI (Playwright) para fluxos críticos.",
-            "Integração com backend real e autenticação.",
-          ],
-          en: [
-            "Add pagination and better loading/empty/error states.",
-            "UI tests (Playwright) for critical flows.",
-            "Integrate with a real backend and authentication.",
-          ],
-        },
-      },
-    ],
+  run: {
+    headless: "npm run build",
+    ui: "npm run dev",
   },
+
+  caseStudy: [
+    {
+      id: "context",
+      title: { pt: "Contexto", en: "Context" },
+      body: {
+        pt: "Dashboards precisam ser rápidos e claros: listar dados, filtrar, editar e manter consistência visual.",
+        en: "Dashboards must be fast and clear: list data, filter, edit, and keep visual consistency.",
+      },
+    },
+    {
+      id: "goal",
+      title: { pt: "Objetivo", en: "Goal" },
+      bullets: {
+        pt: [
+          "Criar UI focada em produto: tabela, filtros e formulários.",
+          "Centralizar tipos e constantes para escala e manutenção.",
+          "Compartilhar schema Zod entre cliente e API sem duplicação.",
+        ],
+        en: [
+          "Create a product-focused UI: table, filters and forms.",
+          "Centralize types and constants for scale and maintenance.",
+          "Share Zod schema between client and API without duplication.",
+        ],
+      },
+    },
+    {
+      id: "approach",
+      title: { pt: "Abordagem", en: "Approach" },
+      bullets: {
+        pt: [
+          "PRODUCT_STATUSES as const como única fonte de verdade para status.",
+          "useMemo para derivar lista filtrada sem efeitos colaterais.",
+          "htmlFor + id em todos os campos para acessibilidade.",
+          "Skeleton com animate-pulse nativo do Tailwind no loading.",
+        ],
+        en: [
+          "PRODUCT_STATUSES as const as the single source of truth for statuses.",
+          "useMemo to derive filtered list without side effects.",
+          "htmlFor + id on all fields for accessibility.",
+          "Skeleton with Tailwind's native animate-pulse on loading.",
+        ],
+      },
+    },
+    {
+      id: "next",
+      title: { pt: "Próximos passos", en: "Next steps" },
+      bullets: {
+        pt: [
+          "Paginação na tabela.",
+          "Custom hook useProducts para encapsular fetch e estado.",
+          "Testes com Vitest + Testing Library.",
+          "Integração com backend real e autenticação.",
+        ],
+        en: [
+          "Table pagination.",
+          "Custom hook useProducts to encapsulate fetch and state.",
+          "Tests with Vitest + Testing Library.",
+          "Real backend integration and authentication.",
+        ],
+      },
+    },
+  ],
+},
 
   // =========================
   // 5) RPG HUB
