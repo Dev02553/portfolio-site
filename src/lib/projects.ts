@@ -35,10 +35,9 @@ export type Project = {
   highlights: string[];
   repoUrl?: string;
   demoUrl?: string;
+  previewUrl?: string;
   status: "Em construção" | "MVP" | "Completo";
   year: string;
-
-  // Página detalhada
   metrics?: ProjectMetric[];
   run?: ProjectRun;
   caseStudy?: CaseStudySection[];
@@ -62,6 +61,7 @@ export const projects: Project[] = [
   "12 testes com Pytest cobrindo todas as regras e cenários de pipeline",
 ],
     repoUrl: "https://github.com/Dev02553/python-etl-automation",
+    previewUrl: "/etl-preview.png",
     status: "Completo",
     year: "2024",
 
@@ -369,6 +369,7 @@ export const projects: Project[] = [
   ],
   repoUrl: "https://github.com/Dev02553/dashboard-next-react-api",
   demoUrl: "https://dashboard-next-react-api.vercel.app",
+  previewUrl: "/dashboard-preview.png",
   status: "Completo",
   year: "2026",
 
