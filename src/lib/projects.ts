@@ -160,28 +160,31 @@ export const projects: Project[] = [
     slug: "parabank-selenium-qa",
     title: "QA E2E — Selenium + JUnit (ParaBank)",
     subtitle:
-      "Suíte E2E em Selenium/JUnit com BaseTest robusto, evidências automáticas e mitigação de instabilidade do ambiente demo.",
+      "Suite E2E com 10 casos passando, Allure Report, WebDriverManager e CI via GitHub Actions.",
     tags: ["QA", "Automação"],
-    stack: ["Java", "JUnit 5", "Selenium 4", "Maven"],
+    stack: ["Java", "JUnit 5", "Selenium 4", "Maven", "Allure Report", "WebDriverManager", "GitHub Actions"],
     highlights: [
-      "10 casos E2E cobrindo fluxos críticos",
-      "Execução headless via Maven",
-      "Evidência automática (screenshot) em falha",
+      "10 casos E2E: login, cadastro, contas, extrato, seguranca e perfil",
+        "Relatorio Allure com dashboard, timeline e screenshots em falha",
+        "WebDriverManager: sem chromedriver.exe no repositorio",
+        "Locators centralizados por classe",
+        "CI via GitHub Actions com execucao headless",
+        "Cenarios positivos, negativos e de seguranca cobertos",
     ],
     repoUrl: "https://github.com/Dev02553/Testes-Automatizados_ParaBank",
     status: "Completo",
     year: "2025",
 
     metrics: [
-      { label: "Casos E2E", value: "10" },
-      { label: "Execução", value: "Headless + UI", hint: "Maven / ChromeDriver" },
-      { label: "Evidências", value: "Screenshots em falha" },
-      { label: "Padrão", value: "BaseTest + Helpers", hint: "reuso e estabilidade" },
+      { label: "Casos E2E", value: "10", hint: "100% passando" },
+        { label: "Relatorio", value: "Allure", hint: "dashboard + screenshots" },
+        { label: "Driver", value: "WebDriverManager", hint: "sem binario no repo" },
+        { label: "CI", value: "GitHub Actions", hint: "headless a cada push" },
     ],
 
     run: {
-      headless: "mvn -Dheadless=true clean test",
-      ui: "mvn clean test -Dheadless=false",
+      headless: "mvn test -Dheadless=true",
+        ui: "mvn test && mvn allure:serve",
     },
 
     caseStudy: [
@@ -246,14 +249,14 @@ export const projects: Project[] = [
         title: { pt: "Próximos passos", en: "Next steps" },
         bullets: {
           pt: [
-            "Adicionar Page Object Model (POM).",
-            "Relatórios HTML + anexar screenshots no CI.",
-            "Pipeline no GitHub Actions com artefatos.",
+            "Implementar Page Object Model (POM) para separar seletores dos testes.",
+              "Execucao paralela com TestNG e threads.",
+              "Publicar relatorio Allure como artefato no GitHub Actions.",
           ],
           en: [
-            "Add Page Object Model (POM).",
-            "HTML reports + attach screenshots in CI.",
-            "GitHub Actions pipeline with artifacts.",
+            "Implement Page Object Model (POM) to separate selectors from tests.",
+              "Parallel execution with TestNG and threads.",
+              "Publish Allure report as artifact in GitHub Actions.",
           ],
         },
       },
