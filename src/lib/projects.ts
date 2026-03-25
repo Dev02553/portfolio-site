@@ -367,7 +367,7 @@ export const projects: Project[] = [
   slug: "react-dashboard",
   title: "Dashboard de Catálogo com Busca em Linguagem Natural",
   subtitle:
-    "Como transformar dados em decisões — uma interface que faz o dado trabalhar por você.",
+  "Dashboard administrativo com KPIs, filtros e busca em linguagem natural para identificar ruptura, itens inativos e oportunidades no catálogo.",
   tags: ["Frontend", "Produto"],
   stack: [
     "Next.js",
@@ -403,11 +403,11 @@ gallery: [
   year: "2026",
 
   metrics: [
-    { label: "Busca", value: "Linguagem natural", hint: "consultas operacionais" },
-    { label: "UI", value: "KPIs + filtros", hint: "leitura rápida" },
-    { label: "Validação", value: "Cliente + API", hint: "dados consistentes" },
-    { label: "Qualidade", value: "Testes + build", hint: "pronto para deploy" },
-  ],
+  { label: "Busca", value: "Linguagem natural", hint: "consultas operacionais" },
+  { label: "Decisão", value: "KPIs + filtros", hint: "leitura rápida do catálogo" },
+  { label: "Validação", value: "Cliente + API", hint: "dados consistentes" },
+  { label: "Qualidade", value: "Testes + build", hint: "pronto para deploy" },
+],
 
   run: {
     headless: "npm run test && npm run build",
