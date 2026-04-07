@@ -66,7 +66,7 @@ export const projects: Project[] = [
   "DQIssue como modelo de dados para evidências rastreáveis",
   "12 testes com Pytest cobrindo todas as regras e cenários de pipeline",
 ],
-    repoUrl: "https://github.com/Dev02553/python-etl-automation",
+    repoUrl: "https://github.com/Dev02553/etl-data-quality-em-python",
     previewUrl: "/etl-preview.png",
     status: "Completo",
     year: "2024",
