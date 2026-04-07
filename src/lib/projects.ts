@@ -329,7 +329,7 @@ export const projects: Project[] = [
       "Tratamento de erros padronizado",
       "Migrations (Flyway) + testes de integração",
     ],
-    repoUrl: "https://github.com/Dev02553/java-api-crud",
+    repoUrl: "https://github.com/Dev02553/api-java-com-db-crud-testes",
     status: "Completo",
     year: "2025",
 
