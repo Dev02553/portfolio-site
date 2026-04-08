@@ -81,7 +81,7 @@ export const projects: Project[] = [
 
     run: {
       headless: "python -m pytest -q",
-      ui: ".\run.ps1",
+      ui: ".\.run.ps1", 
 },
 
     caseStudy: [
