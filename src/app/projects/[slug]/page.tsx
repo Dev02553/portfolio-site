@@ -4,6 +4,25 @@ import { projects } from "@/lib/projects";
 
 type RouteParams = { slug: string };
 
+function getRunNote(slug: string) {
+  switch (slug) {
+    case "python-etl-automation":
+      return "Rode os comandos na raiz do projeto, onde estão o pyproject.toml, requirements.txt e o README.md.";
+
+    case "parabank-selenium-qa":
+    case "java-api-crud":
+      return "Rode os comandos na raiz do projeto, onde está o pom.xml.";
+
+    case "react-dashboard":
+    case "rpg-hub":
+      return "Rode os comandos na raiz do projeto, onde está o package.json.";
+
+    default:
+      return "Rode os comandos na raiz do projeto.";
+  }
+}
+
+
 export function generateStaticParams(): RouteParams[] {
   return projects.map((p) => ({ slug: p.slug }));
 }
@@ -168,8 +187,7 @@ export default async function ProjectPage({
           </div>
 
           <p className="text-sm text-muted-foreground">
-            Dica: rode dentro da pasta que contém o <code>package.json</code> ou o{" "}
-            <code>pom.xml</code> do projeto.
+          Dica: {getRunNote(project.slug)}
           </p>
         </section>
       ) : null}

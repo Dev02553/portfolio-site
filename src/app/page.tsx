@@ -17,9 +17,9 @@ export default function HomePage() {
     })
     .slice(0, 4);
 
-  const total = projects.length;
-  const totalMvp = projects.filter((p) => p.status === "MVP").length;
-  const totalDone = projects.filter((p) => p.status === "Completo").length;
+const total = projects.length;
+const totalDemo = projects.filter((p) => Boolean(p.demoUrl)).length;
+const totalDone = projects.filter((p) => p.status === "Completo").length;
 
   return (
     <div className="space-y-10">
@@ -37,9 +37,9 @@ export default function HomePage() {
               </h1>
 
               <p className="text-muted-foreground max-w-prose leading-relaxed">
-                Portfólio com projetos em <b>QA</b>, <b>automação</b>, <b>dados</b> e
-                <b> desenvolvimento</b>. Cada projeto possui case study, instruções de
-                execução e estrutura organizada.
+            Portfólio com projetos em <b>QA</b>, <b>automação</b> e <b>dados</b>, com
+            base sólida em desenvolvimento. Cada projeto inclui contexto, execução e
+            estrutura organizada para demonstrar aplicação prática.
               </p>
             </div>
 
@@ -64,6 +64,16 @@ export default function HomePage() {
                 className="rounded-md border px-4 py-2 hover:bg-muted transition"
               >
                 Contato
+              
+              
+              </Link>
+
+              <Link
+                href="/cv-david-rodrigues.pdf"
+                target="_blank"
+                className="rounded-md border px-4 py-2 hover:bg-muted transition"
+              >
+                Currículo
               </Link>
 
               <a
@@ -84,8 +94,8 @@ export default function HomePage() {
               </div>
 
               <div className="rounded-xl border p-4">
-                <div className="text-xs text-muted-foreground">MVP</div>
-                <div className="text-lg font-semibold">{totalMvp}</div>
+                <div className="text-xs text-muted-foreground">Demos online</div>
+                <div className="text-lg font-semibold">{totalDemo}</div>
               </div>
 
               <div className="rounded-xl border p-4">
@@ -142,7 +152,7 @@ export default function HomePage() {
                 Foco
               </div>
               <div className="text-sm text-muted-foreground">
-                QA • Automação • Dados • Desenvolvimento
+                QA • Automação • Dados 
               </div>
             </div>
 
