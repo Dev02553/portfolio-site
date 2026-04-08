@@ -330,6 +330,7 @@ export const projects: Project[] = [
       "Migrations (Flyway) + testes de integração",
     ],
     repoUrl: "https://github.com/Dev02553/api-java-com-db-crud-testes",
+    demoUrl: "/demos/java-api/index.html",
     status: "Completo",
     year: "2025",
 
