@@ -67,8 +67,8 @@ export const projects: Project[] = [
   "Conta com 12 testes automatizados para garantir a estabilidade da pipeline",
 ],
     repoUrl: "https://github.com/Dev02553/etl-data-quality-em-python",
+    demoUrl: "https://portfolio-site-nine-tau-41.vercel.app/reports/etl-data-quality/report.html",
     previewUrl: "/etl-preview.png",
-    demoUrl: "/reports/etl-data-quality/report.html",
     status: "Completo",
     year: "2024",
 
@@ -314,97 +314,107 @@ export const projects: Project[] = [
   ],
 },
 
-  // =========================
-  // 3) Java API CRUD
-  // =========================
+// =========================
+// 3) Java API CRUD
+// =========================
+{
+  slug: "java-api-crud",
+  title: "API Java com DB — CRUD + Testes",
+  subtitle:
+    "API REST em Java com CRUD completo de produtos, persistência em banco, validação de dados, migrations com Flyway e documentação via Swagger/OpenAPI.",
+  tags: ["Backend", "Arquitetura"],
+  stack: ["Java", "Spring Boot", "JPA", "Flyway", "Swagger", "JUnit"],
+  highlights: [
+    "CRUD completo de produtos com validação de entrada",
+    "Tratamento de erros padronizado para respostas mais consistentes",
+    "Migrations com Flyway e documentação interativa com Swagger",
+  ],
+  repoUrl: "https://github.com/Dev02553/api-java-com-db-crud-testes",
+  previewUrl: "/java-api-crud-preview.png",
+  gallery: [
+    {
+      src: "/java-api-crud-preview.png",
+      alt: "Swagger UI da API Java com endpoints de produtos",
+      },
   {
-    slug: "java-api-crud",
-    title: "API Java com DB — CRUD + Testes",
-    subtitle:
-      "API REST com persistência, validação, migrations e documentação (Swagger/OpenAPI).",
-    tags: ["Backend", "Arquitetura"],
-    stack: ["Java", "Spring Boot", "JPA", "Flyway", "Testcontainers"],
-    highlights: [
-      "CRUD completo + validação",
-      "Tratamento de erros padronizado",
-      "Migrations (Flyway) + testes de integração",
-    ],
-    repoUrl: "https://github.com/Dev02553/api-java-com-db-crud-testes",
-    demoUrl: "/demos/java-api/index.html",
-    status: "Completo",
-    year: "2025",
-
-    metrics: [
-      { label: "API", value: "REST", hint: "padrão de endpoints" },
-      { label: "Banco", value: "JPA + Migrations", hint: "Flyway" },
-      { label: "Testes", value: "Integração", hint: "Testcontainers" },
-      { label: "Docs", value: "OpenAPI", hint: "Swagger UI" },
-    ],
-
-    run: {
-      headless: "mvn -q test",
-      ui: "mvn spring-boot:run",
+    src: "/java-api-crud-post-success.png",
+    alt: "Execução do endpoint POST com resposta 201 Created no Swagger",
     },
+  ],
+  status: "Completo",
+  year: "2025",
 
-    caseStudy: [
-      {
-        id: "context",
-        title: { pt: "Contexto", en: "Context" },
-        body: {
-          pt: "APIs de CRUD são comuns em produtos, mas precisam consistência: validação, erros padronizados e banco versionado por migrations.",
-          en: "CRUD APIs are common in products, but they require consistency: validation, standardized errors, and versioned database via migrations.",
-        },
-      },
-      {
-        id: "goal",
-        title: { pt: "Objetivo", en: "Goal" },
-        bullets: {
-          pt: [
-            "Construir uma API CRUD com boas práticas de backend.",
-            "Garantir consistência do banco com migrations.",
-            "Cobrir com testes de integração reproduzíveis.",
-          ],
-          en: [
-            "Build a CRUD API with backend best practices.",
-            "Ensure database consistency with migrations.",
-            "Cover with reproducible integration tests.",
-          ],
-        },
-      },
-      {
-        id: "approach",
-        title: { pt: "Abordagem", en: "Approach" },
-        bullets: {
-          pt: [
-            "Camadas bem separadas (controller/service/repository).",
-            "Validação de entrada + respostas de erro padronizadas.",
-            "Testcontainers para testes mais próximos do real.",
-          ],
-          en: [
-            "Well-separated layers (controller/service/repository).",
-            "Input validation + standardized error responses.",
-            "Testcontainers for more realistic integration tests.",
-          ],
-        },
-      },
-      {
-        id: "next",
-        title: { pt: "Próximos passos", en: "Next steps" },
-        bullets: {
-          pt: [
-            "Adicionar autenticação/autorização.",
-            "Observabilidade (logs estruturados + métricas).",
-            "CI rodando testes e publicando artefatos.",
-          ],
-          en: [
-            "Add authentication/authorization.",
-            "Observability (structured logs + metrics).",
-            "CI running tests and publishing artifacts.",
-          ],
-        },
-      },
-    ],
+  metrics: [
+    { label: "API", value: "REST", hint: "endpoints para listar, cadastrar, editar e remover" },
+    { label: "Banco", value: "JPA + Flyway", hint: "persistência e versionamento do schema" },
+    { label: "Docs", value: "Swagger UI", hint: "documentação interativa via OpenAPI" },
+    { label: "Execução", value: "Spring Boot", hint: "subida local com Maven" },
+  ],
+
+  run: {
+    headless: "mvn test",
+    ui: "mvn spring-boot:run",
   },
+
+  caseStudy: [
+    {
+      id: "context",
+      title: { pt: "Contexto", en: "Context" },
+      body: {
+        pt: "O projeto foi desenvolvido para demonstrar uma API backend em Java com estrutura mais próxima de um ambiente profissional, indo além do CRUD básico ao incluir persistência, validação, versionamento do banco e documentação navegável.",
+        en: "The project was built to demonstrate a Java backend API with a structure closer to a professional environment, going beyond basic CRUD by including persistence, validation, database versioning, and browsable documentation.",
+      },
+    },
+    {
+      id: "goal",
+      title: { pt: "Objetivo", en: "Goal" },
+      bullets: {
+        pt: [
+          "Construir uma API CRUD com boas práticas de backend.",
+          "Garantir consistência do banco com migrations.",
+          "Documentar os endpoints para facilitar testes e exploração da API.",
+        ],
+        en: [
+          "Build a CRUD API with backend best practices.",
+          "Ensure database consistency with migrations.",
+          "Document endpoints to make API testing and exploration easier.",
+        ],
+      },
+    },
+    {
+      id: "approach",
+      title: { pt: "Abordagem", en: "Approach" },
+      bullets: {
+        pt: [
+          "Separação em camadas com controller, service, repository e DTOs.",
+          "Validação de entrada e respostas de erro padronizadas.",
+          "Uso de Swagger/OpenAPI para documentação interativa dos endpoints.",
+        ],
+        en: [
+          "Layered separation with controller, service, repository and DTOs.",
+          "Input validation and standardized error responses.",
+          "Use of Swagger/OpenAPI for interactive endpoint documentation.",
+        ],
+      },
+    },
+    {
+      id: "results",
+      title: { pt: "Resultados", en: "Results" },
+      bullets: {
+        pt: [
+          "API funcional com operações completas de CRUD.",
+          "Documentação acessível pelo navegador para demonstração do projeto.",
+          "Base pronta para evoluções como autenticação, CI e deploy em nuvem.",
+        ],
+        en: [
+          "Functional API with complete CRUD operations.",
+          "Documentation accessible through the browser for project showcase.",
+          "A solid base for future improvements such as authentication, CI, and cloud deployment.",
+        ],
+      },
+    },
+  ],
+},
 
   // =========================
   // 4) React Dashboard

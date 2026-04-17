@@ -106,34 +106,29 @@ export default async function ProjectPage({
         </div>
 
         {project.gallery?.length ? (
-          <div className="mt-2 space-y-3">
-            <div className="text-sm font-medium text-muted-foreground">
-              Preview do sistema
-            </div>
+          <div className="mt-2 space-y-4">
+  <div className="text-sm font-medium text-muted-foreground">
+    Preview do sistema
+  </div>
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              {project.gallery.map(
-                (
-                  image: { src: string; alt?: string },
-                  index: number
-                ) => (
-                  <div
-                    key={`${image.src}-${index}`}
-                    className="overflow-hidden rounded-2xl border"
-                  >
-                    <Image
-                      src={image.src}
-                      alt={image.alt ?? `Preview ${index + 1} de ${project.title}`}
-                      width={1400}
-                      height={900}
-                      className="w-full object-cover"
-                      priority={index === 0}
-                    />
-                  </div>
-                )
-              )}
-            </div>
-          </div>
+  <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    {project.gallery.map((image, index) => (
+      <div
+        key={`${image.src}-${index}`}
+        className="flex justify-center overflow-hidden rounded-2xl"
+      >
+        <Image
+          src={image.src}
+          alt={image.alt ?? `Preview ${index + 1} de ${project.title}`}
+          width={2000}
+          height={1400}
+          className="h-auto w-full rounded-2xl object-contain"
+          priority={index === 0}
+        />
+      </div>
+    ))}
+  </div>
+</div>
         ) : project.previewUrl ? (
           <div className="mt-2 overflow-hidden rounded-2xl border">
             <Image
