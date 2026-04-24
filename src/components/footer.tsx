@@ -34,7 +34,7 @@ export default function Footer() {
             <p className="font-medium text-foreground">Links</p>
             <div className="flex flex-col gap-1">
               <a
-                href="https://github.com/Dev02553"
+                href="https://github.com/d-noctopus"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-foreground transition"
@@ -50,10 +50,10 @@ export default function Footer() {
                 LinkedIn
               </a>
               <a
-                href="mailto:David_2553@hotmail.com"
+                href="mailto:david.ds_74@proton.me"
                 className="hover:text-foreground transition break-all"
               >
-                David_2553@hotmail.com
+                david.ds_74@proton.me
               </a>
             </div>
           </div>

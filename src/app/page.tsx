@@ -77,7 +77,7 @@ const totalDone = projects.filter((p) => p.status === "Completo").length;
               </Link>
 
               <a
-                href="https://github.com/Dev02553"
+                href="https://github.com/d-noctopus"
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-md border px-4 py-2 hover:bg-muted transition"

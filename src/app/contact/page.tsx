@@ -4,8 +4,8 @@ import Image from "next/image";
 
 const CONTACT = {
   name: "David",
-  email: "David_2553@hotmail.com",
-  github: "https://github.com/Dev02553",
+  email: "david.ds_74@proton.me",
+  github: "https://github.com/d-noctopus",
   linkedin: "https://www.linkedin.com/in/david-silva-rodrigues-500190284/",
 };
 

@@ -66,7 +66,7 @@ export const projects: Project[] = [
   "Gera relatórios em Excel e HTML para facilitar revisão e auditoria",
   "Conta com 12 testes automatizados para garantir a estabilidade da pipeline",
 ],
-    repoUrl: "https://github.com/Dev02553/etl-data-quality-em-python",
+    repoUrl: "https://github.com/d-noctopus/etl-data-quality-em-python",
     demoUrl: "https://portfolio-site-nine-tau-41.vercel.app/reports/etl-data-quality/report.html",
     previewUrl: "/etl-preview.png",
     status: "Completo",
@@ -185,7 +185,7 @@ export const projects: Project[] = [
     "Estrutura organizada para reduzir flakiness e facilitar manutenção",
     "Execução compatível com ambiente local e pipeline de CI",
   ],
-  repoUrl: "https://github.com/Dev02553/Testes-Automatizados_ParaBank",
+  repoUrl: "https://github.com/d-noctopus/Testes-Automatizados_ParaBank",
   previewUrl: "/parabank-preview-1.png",
   gallery: [
     {
@@ -329,7 +329,7 @@ export const projects: Project[] = [
     "Tratamento de erros padronizado para respostas mais consistentes",
     "Migrations com Flyway e documentação interativa com Swagger",
   ],
-  repoUrl: "https://github.com/Dev02553/api-java-com-db-crud-testes",
+  repoUrl: "https://github.com/d-noctopus/api-java-com-db-crud-testes",
   previewUrl: "/java-api-crud-preview.png",
   gallery: [
     {
@@ -442,7 +442,7 @@ export const projects: Project[] = [
     "API mock integrada com validação no cliente e no servidor",
     "Testes automatizados e build de produção validada",
   ],
-  repoUrl: "https://github.com/Dev02553/dashboard-next-react-api",
+  repoUrl: "https://github.com/d-noctopus/dashboard-next-react-api",
   demoUrl: "https://dashboard-next-react-api.vercel.app",
   previewUrl: "/dashboard-preview-1.png",
 gallery: [
@@ -513,7 +513,7 @@ gallery: [
       "Upload/gestão de mapas e assets",
       "Base para features de produto (permissões, colaboração)",
     ],
-    repoUrl: "https://github.com/Dev02553/rpg-hub",
+    repoUrl: "https://github.com/d-noctopus/rpg-hub",
     status: "Em construção",
     year: "2026",
 

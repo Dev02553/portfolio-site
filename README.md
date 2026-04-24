@@ -7,7 +7,7 @@ A proposta do site é reunir projetos com contexto, stack, métricas, instruçõ
 ## Acesso
 
 - **Portfólio online:** https://portfolio-site-nine-tau-41.vercel.app/
-- **GitHub:** https://github.com/Dev02553
+- **GitHub:** https://github.com/d-noctopus
 
 ---
 
@@ -76,7 +76,7 @@ src/lib/types.ts → tipagem dos projetos e seções
 public/ → imagens, previews e assets
 Como executar localmente
 1. Clonar o repositório
-git clone https://github.com/Dev02553/portfolio-site.git
+git clone https://github.com/d-noctopus/portfolio-site.git
 cd portfolio-site
 2. Instalar dependências
 npm install
@@ -145,6 +145,6 @@ Autor
 
 David Rodrigues
 
-GitHub: https://github.com/Dev02553
+GitHub: https://github.com/d-noctopus
 LinkedIn: https://www.linkedin.com/in/david-silva-rodrigues-500190284/
-E-mail: David_2553@hotmail.com
+E-mail: david.ds_74@proton.me
