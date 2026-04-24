@@ -81,7 +81,7 @@ export default function AboutPage() {
         title="Sobre"
         badge="Objetivo: Trainee / Júnior · QA / Automação / Dados"
         subtitle="Formado em Análise e Desenvolvimento de Sistemas, com foco em Qualidade de Software (QA), automação e organização de processos. Gosto de construir projetos completos, com código, testes e documentação bem estruturados."
-        imageSrc="/contact-hero.jpg"
+        imageSrc="/foto.jpg"
         rightSlot={
           <div className="rounded-xl border bg-background/70 backdrop-blur p-4">
             <div className="text-sm font-medium">Links</div>
